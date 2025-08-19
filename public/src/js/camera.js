@@ -3,17 +3,11 @@ let currentStream = null;
 
 // DOMツリーが完全に読み込まれた後にイベントリスナーを設定
 document.addEventListener("DOMContentLoaded", () => {
-    setupCameraControls();
+    startCamera();
 });
 
-// カメラコントロールのイベントリスナーを設定
-function setupCameraControls() {
-    // 自動でカメラを開始
-    startCamera();
-}
-
 // カメラを起動する関数
-async function startCamera(facingMode = 'environment') {
+async function startCamera() {
     const userVideo = document.getElementById("userVideo");
     
     if (!userVideo) {
@@ -29,7 +23,7 @@ async function startCamera(facingMode = 'environment') {
         // カメラの設定
         const constraints = {
             video: {
-                facingMode: facingMode, // 'environment'でリアカメラ、'user'でフロントカメラ
+                facingMode: 'environment', // 'environment'でリアカメラ、'user'でフロントカメラ
             },
             audio: false
         };
