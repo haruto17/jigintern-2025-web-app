@@ -17,7 +17,6 @@ async function startCamera(facingMode = 'environment') {
     const userVideo = document.getElementById("userVideo");
     
     if (!userVideo) {
-        console.error("video要素が見つかりません");
         return;
     }
 
@@ -31,8 +30,6 @@ async function startCamera(facingMode = 'environment') {
         const constraints = {
             video: {
                 facingMode: facingMode, // 'environment'でリアカメラ、'user'でフロントカメラ
-                width: { ideal: 1280, max: 1920 },
-                height: { ideal: 720, max: 1080 }
             },
             audio: false
         };
@@ -42,14 +39,8 @@ async function startCamera(facingMode = 'environment') {
         userVideo.srcObject = currentStream;
         
         // 自動再生を開始
-        await userVideo.play();
-        
-        console.log("カメラが正常に起動しました");
-        
+        await userVideo.play();        
     } catch (error) {
-        console.error("カメラの起動に失敗しました:", error);
-        
-        // エラーメッセージを表示
         if (error.name === 'NotAllowedError') {
             alert('カメラの使用が許可されていません。ブラウザの設定を確認してください。');
         } else if (error.name === 'NotFoundError') {
@@ -76,8 +67,6 @@ function stopCamera() {
     if (userVideo) {
         userVideo.srcObject = null;
     }
-    
-    console.log("カメラが停止されました");
 }
 
 // ページが閉じられる時にカメラを停止
