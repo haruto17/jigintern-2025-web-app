@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ホーム</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
 
-  <body>
-    <header>
-      <h1>ホーム</h1>
-    </header>
-    <div class="camera">
-      <a href="src/html/camera.html" class="camera">カメラを起動</a>
-    </div>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ホーム</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>ホーム</h1>
+  </header>
+  <!-- <div class="camera">
+    <a href="src/html/camera.html" class="camera">カメラを起動</a>
+  </div> -->
+  <video id="userVideo" autoplay></video>
+  <button id="btn" onclick="startCamera()">start camera</button>
+</body>
+<script>
+  // カメラを起動する関数
+  function startCamera() {
+    console.log("hi");
+    const userVideo = document.getElementById("userVideo");
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: false })
+      .then((stream) => {
+        userVideo.srcObject = stream;
+        userVideo.play();
+      })
+      .catch((err) => {
+        console.error(`An error occurred: ${err}`);
+      });
+  }
+
+
+</script>
+
 </html>
