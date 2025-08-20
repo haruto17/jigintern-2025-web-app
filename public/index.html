@@ -13,33 +13,10 @@
   <header>
     <h1>ホーム</h1>
   </header>
-  <!-- <div class="camera">
-    <a href="src/html/camera.html" class="camera">カメラを起動</a>
-  </div> -->
-  <video id="userVideo" autoplay></video>
-  <button id="btn" onclick="startCamera()">start camera</button>
+  <label for="upload">写真を撮影してアップロードする</label>
+  <input id="upload" type="file" name="image" accept="image/*" capture="camera">
 </body>
 <script>
-
-
-  // カメラを起動する関数
-  function startCamera() {
-    const userVideo = document.getElementById("userVideo");
-    const constraints = { audio: false, video: { facingMode: "environment" } };
-
-    navigator.mediaDevices
-      .getUserMedia(constraints)
-      .then((stream) => {
-        userVideo.srcObject = stream;
-
-        userVideo.onloadedmetadata = function (e) {
-          userVideo.play();
-        };
-      })
-      .catch((err) => {
-        console.error(`An error occurred: ${err}`);
-      });
-  }
 
 
 </script>
