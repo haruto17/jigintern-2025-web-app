@@ -20,15 +20,21 @@
   <button id="btn" onclick="startCamera()">start camera</button>
 </body>
 <script>
+
+
   // カメラを起動する関数
   function startCamera() {
-    console.log("hi");
     const userVideo = document.getElementById("userVideo");
+    const constraints = { audio: false, video: { facingMode: "environment" } };
+
     navigator.mediaDevices
-      .getUserMedia({ video: true, audio: false })
+      .getUserMedia(constraints)
       .then((stream) => {
         userVideo.srcObject = stream;
-        userVideo.play();
+
+        userVideo.onloadedmetadata = function (e) {
+          userVideo.play();
+        };
       })
       .catch((err) => {
         console.error(`An error occurred: ${err}`);
