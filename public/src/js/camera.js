@@ -13,38 +13,26 @@ async function startCamera() {
     if (!userVideo) {
         return;
     }
-
-    try {
-        // 既存のストリームがあれば停止
-        if (currentStream) {
-            stopCamera();
-        }
-
-        // カメラの設定
-        const constraints = {
-            video: {
-                facingMode: 'environment', // 'environment'でリアカメラ、'user'でフロントカメラ
-            },
-            audio: false
-        };
-
-        // カメラの映像を取得
-        currentStream = await navigator.mediaDevices.getUserMedia(constraints);
-        userVideo.srcObject = currentStream;
-        
-        // 自動再生を開始
-        await userVideo.play();        
-    } catch (error) {
-        if (error.name === 'NotAllowedError') {
-            alert('カメラの使用が許可されていません。ブラウザの設定を確認してください。');
-        } else if (error.name === 'NotFoundError') {
-            alert('カメラが見つかりません。');
-        } else if (error.name === 'NotSupportedError') {
-            alert('このブラウザはカメラ機能をサポートしていません。');
-        } else {
-            alert('カメラの起動に失敗しました: ' + error.message);
-        }
+    
+    // 既存のストリームがあれば停止
+    if (currentStream) {
+        stopCamera();
     }
+
+    // カメラの設定
+    const constraints = {
+        video: {
+            facingMode: 'environment', // 'environment'でリアカメラ、'user'でフロントカメラ
+        },
+        audio: false
+    };
+
+    // カメラの映像を取得
+    currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+    userVideo.srcObject = currentStream;
+    
+    // 自動再生を開始
+    await userVideo.play();        
 }
 
 // カメラを停止する関数
