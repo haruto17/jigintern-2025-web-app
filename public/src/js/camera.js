@@ -4,6 +4,8 @@ document.addEventListener("load", () => {
 
 // カメラを起動する関数
 function startCamera() {
+    console.log("start");
+
     const userVideo = document.getElementById("userVideo");
 
     if (!userVideo) {
