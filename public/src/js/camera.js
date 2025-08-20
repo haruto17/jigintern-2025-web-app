@@ -13,8 +13,8 @@ function startCamera() {
     navigator.mediaDevices
         .getUserMedia({ video: true, audio: false })
         .then((stream) => {
-            video.srcObject = stream;
-            video.play();
+            userVideo.srcObject = stream;
+            userVideo.play();
         })
         .catch((err) => {
             console.error(`An error occurred: ${err}`);
